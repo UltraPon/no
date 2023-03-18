@@ -27,6 +27,7 @@ namespace practice1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PageFrame.Content = new Page1();
+
         }
         private void Button_Click1(object sender, RoutedEventArgs e)
         {

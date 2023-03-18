@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,5 +28,18 @@ namespace practice1
             InitializeComponent();
             cl1.ItemsSource = client.GetData();
         }
-    }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            client.InsertQuery(imya.Text, family.Text, patronymic.Text);
+            cl1.ItemsSource = client.GetData();
+        }
+
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            int id = (int)(cl1.SelectedItem as DataRowView).Row[0];
+            client.DeleteQuery(id);
+            cl1.ItemsSource = client.GetData();
+        }
+    }   
 }
