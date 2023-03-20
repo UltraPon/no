@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -41,5 +43,25 @@ namespace practice1
             client.DeleteQuery(id);
             cl1.ItemsSource = client.GetData();
         }
-    }   
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            if (cl1.SelectedItem != null)
+            {
+                var item = cl1.SelectedItem as DataRowView;
+                client.UpdateQuery(imya.Text, family.Text, patronymic.Text, (int)item.Row[0]);
+                cl1.ItemsSource = client.GetData();
+            }
+        }
+        private void cl1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cl1.SelectedItem != null)
+            {
+                var item = cl1.SelectedItem as DataRowView;
+                imya.Text = Convert.ToString(item.Row[1]);
+                family.Text = Convert.ToString(item.Row[2]);
+                patronymic.Text = Convert.ToString(item.Row[3]);
+            }
+        }
+    }
 }

@@ -45,5 +45,26 @@ namespace practice1
             ticket.DeleteQuery(id);
             tick1.ItemsSource = ticket.GetData();
         }
+
+        private void updatedannie_Click(object sender, RoutedEventArgs e)
+        {
+            if (tick1.SelectedItem != null)
+            {
+                var item = tick1.SelectedItem as DataRowView;
+                ticket.UpdateQuery(Convert.ToInt32(price.Text), Convert.ToInt32(mesto.Text), Convert.ToInt32(ryad.Text), (int) boxik.SelectedValue, (int)item.Row[0]);
+                tick1.ItemsSource = ticket.GetData();
+            }
+        }
+        private void tick1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (tick1.SelectedItem != null)
+            {
+                var item = tick1.SelectedItem as DataRowView;
+                price.Text = Convert.ToString(item.Row[1]);
+                mesto.Text = Convert.ToString(item.Row[2]);
+                ryad.Text = Convert.ToString(item.Row[3]);
+                boxik.SelectedValue = (item.Row[4]);
+            }
+        }
     }
 }
